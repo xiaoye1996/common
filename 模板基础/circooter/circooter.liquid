@@ -1,0 +1,76 @@
+{% liquid
+  assign sectionId = 'SectionColumns--' | append: section.id
+  assign container = section.settings.container
+  assign section_heading = section.settings.heading
+%}
+
+<section data-section-id="{{ sectionId }}" data-section-type="section-images">
+  <div class="{{container}}">
+    {% render 'index-section-header', section_settings: section.settings %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Text columns with images",
+  "settings": [
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Container type",
+      "default": "container",
+      "options": [
+        {
+          "value": "container-fluid",
+          "label": "Default"
+        },
+        {
+          "value": "w-full",
+          "label": "Full width"
+        },
+        {
+          "value": "container",
+          "label": "Use container box"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Text columns with images"
+    },
+    {
+      "type": "html",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "select",
+      "id": "header_postion",
+      "label": "Heading location",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns per slide",
+      "default": 3,
+      "min": 2,
+      "max": 4,
+      "step": 1
+    }
+  ],
+  "presets": [{ "name": "Text columns with images" }]
+}
+{% endschema %}
